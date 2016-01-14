@@ -56,18 +56,24 @@ func Parse() bool {
 }
 
 func initialize() {
-  if compile(`\s%s\s`).MatchString(Help) {
+  format()
+  type_map()
+  First = false
+}
+
+var FormatX = `\s%s\s`
+func format() {
+  if compile(FormatX).MatchString(Help) {
     name := os.Args[0]
     path := strings.Split(name, "/")
     name = path[len(path)-1]
     Help = sprintf(Help, name)
   }
-  type_map()
-  First = false
 }
 
+var TypeMapX = `--\w+=\w+`
 func type_map() {
-  kx := compile(`--\w+=\w+`)
+  kx := compile(TypeMapX)
   ks := kx.FindAllString(Help, -1)
   if ks != nil {
     for _, k := range ks {
@@ -77,12 +83,19 @@ func type_map() {
   }
 }
 
+var FloatX = `^\d+\.\d+$`
+var IntX   = `^\d+$`
+var DateX  = `\d\d\d\d-\d\d-\d\d`
+var WordX  = `^\w+$`
+var FileX  = `^[^*&%\s]+$`
+var CsvX   = `^\w+(,\w+)*$`
 func type_check() error {
-  is_float := compile(`^\d+\.\d+$`)
-  is_int   := compile(`^\d+$`)
-  is_date  := compile(`\d\d\d\d-\d\d-\d\d`)
-  is_word  := compile(`^\w+$`)
-  is_file  := compile(`^[^*&%\s]+$`)
+  is_float := compile(FloatX)
+  is_int   := compile(IntX)
+  is_date  := compile(DateX)
+  is_word  := compile(WordX)
+  is_file  := compile(FileX)
+  is_csv   := compile(CsvX)
   var ok bool
   for key, kind := range TypeMap {
     value := Options[key]
@@ -99,6 +112,8 @@ func type_check() error {
         ok = is_file.MatchString(value.(string))
       case "WORD":
         ok = is_word.MatchString(value.(string))
+      case "CSV":
+        ok = is_csv.MatchString(value.(string))
       }
       if !ok {
         return errors.New(
