@@ -8,6 +8,7 @@ import "fmt"
 import "errors"
 import "regexp"
 import "strings"
+import "strconv"
 import "github.com/docopt/docopt-go"
 
 // Aliases
@@ -141,4 +142,34 @@ func type_check() error {
     }
   }
   return nil
+}
+
+func oops(k string, t string) {
+  fmt.Fprintf(
+    os.Stderr,
+    "Could not parse %s as a %s.",
+    k, t)
+  os.Exit(65)
+}
+
+func Tos(k string) string {
+  a := Options[k]
+  if a == nil { return "" }
+  return a.(string)
+}
+
+func Toi(k string) int {
+  a := Options[k]
+  if a == nil { return 0 }
+  f, e := strconv.Atoi(a.(string))
+  if e != nil { oops(k, "Int") }
+  return f
+}
+
+func Tof(k string) float64 {
+  a := Options[k]
+  if a == nil { return 0.0 }
+  f, e := strconv.ParseFloat(a.(string), 64)
+  if e != nil { oops(k, "Float") }
+  return f
 }
