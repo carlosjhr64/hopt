@@ -173,3 +173,39 @@ func Tof(k string) float64 {
   if e != nil { oops(k, "Float") }
   return f
 }
+
+func Destroy() {
+  // Not sure if Destroy is usefull,
+  // but after hopt gets used
+  // why keep these around?  :-??
+  compile      = nil
+  puts         = nil
+  sprintf      = nil
+  Version      = ""
+  Help         = "" // Specially this one as it can be quite long.
+//First        = nil
+//OptionsFirst = nil
+//DocOptHelp   = nil
+//DocOptExit   = nil
+//Exit         = nil
+  Argv         = nil
+  Err          = nil
+  TypeMap      = nil
+  Options      = nil
+  FloatX       = ""
+  IntX         = ""
+  DateX        = ""
+  WordX        = ""
+  FileX        = ""
+  CsvX         = ""
+  is_float     = nil
+  is_int       = nil
+  is_date      = nil
+  is_word      = nil
+  is_file      = nil
+  is_csv       = nil
+  FormatX      = ""
+  TypeMapX     = ""
+  is_format    = nil
+  is_typemap   = nil
+}

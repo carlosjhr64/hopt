@@ -45,4 +45,6 @@ func TestParse(test *testing.T) {
   if err != nil {
     bad("18. Did not expect a type error.")
   }
+
+  Destroy()
 }

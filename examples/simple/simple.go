@@ -21,4 +21,6 @@ Options:
   printf("file:  %s\n", hopt.Tos("--file"))
   printf("wd:    %s\n", hopt.Tos("--wd"))
   printf("start: %s\n", hopt.Tos("--start"))
+  hopt.Destroy()
+  puts("Done!")
 }
