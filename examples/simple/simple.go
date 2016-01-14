@@ -9,6 +9,7 @@ func main(){
   hopt.Help = `Usage:
   simple [options]
 Options:
+  -v --verbose
   --x=FLOAT
   --int=INT
   --file=FILE
@@ -16,11 +17,12 @@ Options:
   --start=DATE`
   hopt.Parse()
   puts(hopt.Options)
-  printf("x:     %f\n", hopt.Tof("--x"))
-  printf("int:   %d\n", hopt.Toi("--int"))
-  printf("file:  %s\n", hopt.Tos("--file"))
-  printf("wd:    %s\n", hopt.Tos("--wd"))
-  printf("start: %s\n", hopt.Tos("--start"))
+  printf("verbose: %v\n", hopt.Tob("--verbose"))
+  printf("x:       %f\n", hopt.Tof("--x"))
+  printf("int:     %d\n", hopt.Toi("--int"))
+  printf("file:    %s\n", hopt.Tos("--file"))
+  printf("wd:      %s\n", hopt.Tos("--wd"))
+  printf("start:   %s\n", hopt.Tos("--start"))
   hopt.Destroy()
   puts("Done!")
 }

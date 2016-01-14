@@ -158,6 +158,12 @@ func Tos(k string) string {
   return a.(string)
 }
 
+func Tob(k string) bool {
+  a := Options[k]
+  if a == nil { return false }
+  return a.(bool)
+}
+
 func Toi(k string) int {
   a := Options[k]
   if a == nil { return 0 }
