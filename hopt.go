@@ -18,6 +18,8 @@ var puts, sprintf = fmt.Println, fmt.Sprintf
 
 // Globals
 
+const VERSION = "0.0.1"
+
 var Version = "0.0.0"
 var Help = `Usage:
   %s [options] [<arg>...]
