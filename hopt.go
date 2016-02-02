@@ -19,7 +19,7 @@ var puts, sprintf = fmt.Println, fmt.Sprintf
 
 // Globals
 
-const VERSION = "0.0.2"
+const VERSION = "0.1.0"
 
 var Version = "0.0.0"
 var Help = `Usage:
@@ -51,7 +51,7 @@ func Parse() bool {
   if Exit {
     if Err != nil { os.Exit(64) }
     for _, opt := range(os.Args[1:]) {
-      if opt == "--version" || opt == "-h" || opt == "--help" {
+      if opt == "-v" || opt == "--version" || opt == "-h" || opt == "--help" {
         os.Exit(0)
       }
     }

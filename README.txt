@@ -5,7 +5,7 @@ A docopt(854c423c810880e30b9fecdabb12d54f4a92f9bb) wrapper that adds:
     * 64 exit code on usage error.
     * 65 exit code on bad user input (but don't see how it can normally happen).
 
-const VERSION = "0.0.2"
+const VERSION = "0.1.0"
 
 var Argv []string = nil
 var CsvX = `^\w+(,\w+)*$`
